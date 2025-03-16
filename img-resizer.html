@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Image Resizer | Exact Dimension Tool</title>
+    <meta name="description" content="Professional image resizing tool with exact dimension control. Resize JPG, PNG, and WebP images to specific pixel dimensions while maintaining quality.">
+    <meta name="keywords" content="image resizer, resize images, exact dimensions, photo size editor, web image resizing, mobile-friendly resizer">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    crossorigin="anonymous"></script>
+
+    <style>
+        /* Reusing previous compressor UI styles */
+        :root {
+            --primary: #00c3ff;
+            --secondary: #ff2d55;
+            --glass: rgba(255, 255, 255, 0.1);
+            --depth-1: 20px;
+            --depth-2: 50px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            perspective: 1000px;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            transform-style: preserve-3d;
+        }
+
+        .title-container {
+            text-align: center;
+            margin: 3rem 0;
+            perspective: 1000px;
+        }
+
+        .main-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: rotateX(20deg) translateZ(var(--depth-1));
+            display: inline-block;
+            position: relative;
+            animation: titleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: rotateX(20deg) translateZ(var(--depth-1)) translateY(0); }
+            50% { transform: rotateX(20deg) translateZ(var(--depth-1)) translateY(-10px); }
+        }
+
+        .resizer-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 0 50px rgba(0,0,0,0.3);
+            transform: translateZ(var(--depth-1));
+            margin: 2rem 0;
+        }
+
+        .upload-section {
+            border: 3px dashed var(--primary);
+            border-radius: 1.5rem;
+            padding: 3rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-section:hover {
+            background: rgba(0, 195, 255, 0.05);
+            transform: translateZ(10px);
+        }
+
+        .dimension-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .dimension-input {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 1rem;
+            padding: 1rem;
+            color: white;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+
+        .ratio-lock {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .preview-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .preview-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .preview-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .resizer-card {
+                padding: 1.5rem;
+                border-radius: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-container">
+            <h1 class="main-title">Image Resizer</h1>
+        </div>
+
+        <!-- Ad Unit -->
+        <div class="ad-unit">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="XXXXXXXXXX"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+        </div>
+
+        <div class="resizer-card">
+            <div class="upload-section" id="dropZone">
+                <input type="file" id="fileInput" accept="image/*" hidden>
+                <label for="fileInput" class="download-btn">
+                    📁 Upload Image
+                </label>
+                <p style="color: rgba(255,255,255,0.7); margin-top: 1rem">
+                    Drag & drop or click to upload
+                </p>
+            </div>
+
+            <div class="dimension-controls">
+                <div>
+                    <label>Width (px)</label>
+                    <input type="number" class="dimension-input" id="widthInput" min="1" value="800">
+                </div>
+                <div>
+                    <label>Height (px)</label>
+                    <input type="number" class="dimension-input" id="heightInput" min="1" value="600">
+                </div>
+            </div>
+
+            <div class="ratio-lock">
+                <input type="checkbox" id="lockRatio">
+                <label for="lockRatio">Maintain Aspect Ratio</label>
+            </div>
+
+            <div class="preview-container">
+                <div class="preview-box">
+                    <h3>Original Image</h3>
+                    <img src="#" class="preview-image" id="originalPreview" alt="Original preview">
+                </div>
+                <div class="preview-box">
+                    <h3>Resized Image</h3>
+                    <img src="#" class="preview-image" id="resizedPreview" alt="Resized preview">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="download-btn" id="resizeBtn">
+                    ⚡ Resize Now
+                </button>
+                <button class="download-btn" id="downloadBtn" style="display: none; margin-top: 1rem;">
+                    💾 Download Resized Image
+                </button>
+            </div>
+        </div>
+
+        <!-- Additional Ad Unit -->
+        <div class="ad-unit">
+            <!-- AdSense code -->
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const widthInput = document.getElementById('widthInput');
+        const heightInput = document.getElementById('heightInput');
+        const lockRatio = document.getElementById('lockRatio');
+        const originalPreview = document.getElementById('originalPreview');
+        const resizedPreview = document.getElementById('resizedPreview');
+        const resizeBtn = document.getElementById('resizeBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        let originalImage = null;
+        let aspectRatio = 1;
+        let resizedBlob = null;
+
+        // Event Listeners
+        fileInput.addEventListener('change', handleFileUpload);
+        widthInput.addEventListener('input', updateDimensions);
+        heightInput.addEventListener('input', updateDimensions);
+        resizeBtn.addEventListener('click', processResize);
+        downloadBtn.addEventListener('click', downloadImage);
+
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                originalImage = file;
+                previewOriginal(file);
+            }
+        }
+
+        function previewOriginal(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalPreview.style.display = 'block';
+                originalPreview.src = e.target.result;
+                
+                // Get natural dimensions
+                const img = new Image();
+                img.onload = () => {
+                    aspectRatio = img.width / img.height;
+                    if(lockRatio.checked) {
+                        widthInput.value = img.width;
+                        heightInput.value = img.height;
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updateDimensions(e) {
+            if(!lockRatio.checked || !originalImage) return;
+            
+            if(e.target === widthInput) {
+                heightInput.value = Math.round(widthInput.value / aspectRatio);
+            } else {
+                widthInput.value = Math.round(heightInput.value * aspectRatio);
+            }
+        }
+
+        async function processResize() {
+            if(!originalImage) return alert('Please upload an image first!');
+            
+            resizeBtn.disabled = true;
+            resizeBtn.innerHTML = '⏳ Processing...';
+
+            try {
+                const width = parseInt(widthInput.value);
+                const height = parseInt(heightInput.value);
+                
+                resizedBlob = await resizeImage(originalImage, width, height);
+                
+                resizedPreview.style.display = 'block';
+                resizedPreview.src = URL.createObjectURL(resizedBlob);
+                downloadBtn.style.display = 'inline-block';
+                
+            } catch(error) {
+                alert('Resizing failed: ' + error.message);
+            } finally {
+                resizeBtn.disabled = false;
+                resizeBtn.innerHTML = '⚡ Resize Now';
+            }
+        }
+
+        async function resizeImage(file, width, height) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    canvas.toBlob(blob => {
+                        if(!blob) return reject('Resizing failed');
+                        resolve(blob);
+                    }, file.type);
+                };
+                img.onerror = () => reject('Failed to load image');
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        function downloadImage() {
+            if(!resizedBlob) return;
+            
+            const url = URL.createObjectURL(resizedBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `resized-${widthInput.value}x${heightInput.value}-${originalImage.name}`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        // Initialize AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
