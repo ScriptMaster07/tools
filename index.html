@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolKit Pro - Online Image & PDF Tools</title>
+    <meta name="description" content="Free online toolkit for all your image and PDF needs. Convert, compress, edit, and transform files with professional-grade tools.">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --glass: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            backdrop-filter: blur(12px);
+            background: var(--glass);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 8rem 0 4rem;
+            perspective: 1000px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            transform: translateZ(50px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateZ(50px); }
+            50% { transform: translateY(-10px) translateZ(50px); }
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .tool-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px) translateZ(20px);
+            box-shadow: var(--shadow);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin: 4rem 0;
+        }
+
+        .category-header {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Ad Units */
+        .ad-unit {
+            background: var(--glass);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 0 2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">ToolKit Pro</div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Your Ultimate Online Toolkit</h1>
+            <p>Transform, convert, and optimize files with professional-grade tools</p>
+            
+            <!-- Ad Unit 1 -->
+            <div class="ad-unit">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                    data-ad-slot="XXXXXXXXXX"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+            </div>
+        </section>
+
+        <!-- Image Tools Section -->
+        <section class="category-section">
+    <h2 class="category-header">Image Tools</h2>
+    <div class="tools-grid">
+        <a href="/tools/image-compress.html" class="tool-card">
+            <div class="tool-icon">🖼️</div>
+            <h3>Image Compressor</h3>
+            <p>Reduce image size without quality loss</p>
+        </a>
+    </div>
+</section>
+
+                
+                <div class="tool-card">
+                    <div class="tool-icon">📐</div>
+                    <h3>Image Resizer</h3>
+                    <p>Resize images to exact dimensions</p>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔄</div>
+                    <h3>Format Converter</h3>
+                    <p>Convert between JPG, PNG, WEBP</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PDF Tools Section -->
+        <section class="category-section">
+            <h2 class="category-header">PDF Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">📄</div>
+                    <h3>PDF Compressor</h3>
+                    <p>Reduce PDF file size effectively</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">🔒</div>
+                    <h3>PDF Protector</h3>
+                    <p>Add passwords & permissions</p>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🖨️</div>
+                    <h3>PDF Converter</h3>
+                    <p>Convert to/from Word, Excel, etc.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Unit 2 -->
+        <div class="ad-unit">
+            <!-- Add AdSense code here -->
+        </div>
+    </div>
+
+    <script>
+        // Initialize AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        
+        // Add hover effect to tool cards
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('mouseover', () => {
+                card.style.transform = 'translateY(-5px) translateZ(20px)';
+            });
+            
+            card.addEventListener('mouseout', () => {
+                card.style.transform = 'translateY(0) translateZ(0)';
+            });
+        });
+    </script>
+</body>
+</html>
