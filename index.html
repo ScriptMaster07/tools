@@ -60,19 +60,11 @@
         .hero {
             text-align: center;
             padding: 8rem 0 4rem;
-            perspective: 1000px;
         }
 
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
-            transform: translateZ(50px);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateZ(50px); }
-            50% { transform: translateY(-10px) translateZ(50px); }
         }
 
         /* Tools Grid */
@@ -91,6 +83,9 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            color: white;
+            display: block;
         }
 
         .tool-card:hover {
@@ -172,29 +167,25 @@
 
         <!-- Image Tools Section -->
         <section class="category-section">
-    <h2 class="category-header">Image Tools</h2>
-    <div class="tools-grid">
-        <a href="/tools/image-compress.html" class="tool-card">
-            <div class="tool-icon">🖼️</div>
-            <h3>Image Compressor</h3>
-            <p>Reduce image size without quality loss</p>
-        </a>
-    </div>
-</section>
-
+            <h2 class="category-header">Image Tools</h2>
+            <div class="tools-grid">
+                <a href="/tools/image-compress.html" class="tool-card">
+                    <div class="tool-icon">🖼️</div>
+                    <h3>Image Compressor</h3>
+                    <p>Reduce image size without quality loss</p>
+                </a>
                 
-   <div class="tool-card">
+                <a href="/tools/img-resizer.html" class="tool-card">
                     <div class="tool-icon">📐</div>
                     <h3>Image Resizer</h3>
                     <p>Resize images to exact dimensions</p>
-                </div>
+                </a>
 
-
-                <div class="tool-card">
+                <a href="#" class="tool-card">
                     <div class="tool-icon">🔄</div>
                     <h3>Format Converter</h3>
                     <p>Convert between JPG, PNG, WEBP</p>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -202,23 +193,23 @@
         <section class="category-section">
             <h2 class="category-header">PDF Tools</h2>
             <div class="tools-grid">
-                <div class="tool-card">
+                <a href="#" class="tool-card">
                     <div class="tool-icon">📄</div>
                     <h3>PDF Compressor</h3>
                     <p>Reduce PDF file size effectively</p>
-                </div>
+                </a>
                 
-                <div class="tool-card">
+                <a href="#" class="tool-card">
                     <div class="tool-icon">🔒</div>
                     <h3>PDF Protector</h3>
                     <p>Add passwords & permissions</p>
-                </div>
+                </a>
 
-                <div class="tool-card">
+                <a href="#" class="tool-card">
                     <div class="tool-icon">🖨️</div>
                     <h3>PDF Converter</h3>
                     <p>Convert to/from Word, Excel, etc.</p>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -231,17 +222,6 @@
     <script>
         // Initialize AdSense
         (adsbygoogle = window.adsbygoogle || []).push({});
-        
-        // Add hover effect to tool cards
-        document.querySelectorAll('.tool-card').forEach(card => {
-            card.addEventListener('mouseover', () => {
-                card.style.transform = 'translateY(-5px) translateZ(20px)';
-            });
-            
-            card.addEventListener('mouseout', () => {
-                card.style.transform = 'translateY(0) translateZ(0)';
-            });
-        });
     </script>
 </body>
 </html>
